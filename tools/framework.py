@@ -7,9 +7,11 @@ import random
 import struct
 import subprocess
 
+import convolve_oracle
+
 project_dir = Path(__file__).parent.resolve().parent
 tests_dir = project_dir / "tests"
-oracle_path = Path("/home/ff/cs61c/sp23/proj4/convolve_oracle")
+# oracle_path = Path("/home/ff/cs61c/sp23/proj4/convolve_oracle")
 
 all_tests: Dict[str, "TestSpec"] = {}
 
@@ -20,9 +22,10 @@ def set_tests_dir(path: Path):
 
 
 def run_oracle(a_path: Path, b_path: Path, out_path: Path):
-    if not oracle_path.exists():
-        raise RuntimeError("Oracle does not exist, please run on the hive machines")
-    subprocess.run([oracle_path, a_path, b_path, out_path])
+    # if not oracle_path.exists():
+    #     raise RuntimeError("Oracle does not exist, please run on the hive machines")
+    # subprocess.run([oracle_path, a_path, b_path, out_path])
+    convolve_oracle.convolve(a_path, b_path, out_path)
 
 
 def randint(lower, upper, **kwargs):
